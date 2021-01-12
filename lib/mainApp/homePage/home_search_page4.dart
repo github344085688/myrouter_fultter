@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 
-class MySearchDelegate <T extends ViewModelWidget>  extends SearchDelegate<String> {
+class MySearchDelegate extends SearchDelegate<String> {
   final List<String> _words = ['myHomePage', 'state', 'string'];
   final List<String> _history;
 
-  MySearchDelegate(): _history = <String>[ '面试','Studio3','动画dfsfds','自定义View','性能优化','gradle','Camera','代码混淆 安全','逆向加固'],
+  MySearchDelegate()
+      : _history = <String>[
+          '面试',
+          'Studio3',
+          '动画dfsfds',
+          '自定义View',
+          '性能优化',
+          'gradle',
+          'Camera',
+          '代码混淆 安全',
+          '逆向加固'
+        ],
         super();
 
   @override
@@ -31,6 +41,43 @@ class MySearchDelegate <T extends ViewModelWidget>  extends SearchDelegate<Strin
   @override
   Widget buildResults(BuildContext context) {
     //可以使用FutureBuilder  调用api发送网络请求
+   /* return FutureBuilder(
+        future: _requestData(query, context),
+    builder: (context, snapshot) {
+    switch (snapshot.connectionState) {
+    case ConnectionState.none:
+    return new Container();
+    // 当前没有连接到任何的异步任务
+    case ConnectionState.waiting:
+    // 连接到异步任务并等待进行交互
+    case ConnectionState.active:
+    print("--------->loading");
+    return Container(
+    child: Center(
+    child: Text("加载数据中..."),
+    ),
+    );
+    // 连接到异步任务并开始交互
+    case ConnectionState.done:
+    print("--------->done");
+    if(snapshot.hasError){
+    print("--------->error");
+    return Container(
+    child: Center(
+    child: Text("加载数据失败"),
+    ),
+    );
+    }else if(snapshot.hasData){
+    print("--------->data");
+    return Container(
+    child: Center(
+    child: Text("${snapshot.data}"),
+    ),
+    );
+    }
+    }
+    return Container();
+    }*/
    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(

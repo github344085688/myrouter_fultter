@@ -36,6 +36,7 @@ dependencies:
   backdrop: ^0.4.4  #背景模糊
   stacked: ^1.7.6 #MVVM
   flutter_svg: ^0.19.1 #svg
+  flutter_staggered_grid_view: ^0.3.3
 #  fluttertoast: any #弹窗，
 
 
@@ -58,23 +59,25 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/
-    - lib/dart/class/super.dart
-    - lib/flutter_widget/app_bar/app_bar_ex.dart
-    - lib/flutter_widget/lists/tile_example.dart
-    - lib/flutter_widget/lists/listview_example.dart
-    - lib/flutter_pub/markdown/markdown_example.dart
-    - lib/flutter_pub/provider/example/provider_example.dart
-    - lib/flutter_pub/shard_preferences/example/shard_preferences.dart
-    - lib/http/dio/example/http_example.dart
-    - lib/http/http_modules/http_page_test_page.dart
-    - lib/navigator/based_on_using/navigator_based.dart
-    - lib/navigator/navigator_expert/nav_expert.dart
-    - lib/share_communication/communication/communication.dart
-    - lib/share_communication/shared_data_widget/shared_data_widget.dart
-    - lib/flutter_pub/stacked_pub/stacked_nonReactive.dart
-    - lib/layouts_or_widget/container/container.dart
-    - lib/based_component/button_style/button_style.dart
+    -  assets/images/
+    -  assets/images/photos/
+    -  assets/json/creads.json
+    -  lib/dart/class/super.dart
+    -  lib/flutter_widget/app_bar/app_bar_ex.dart
+    -  lib/flutter_widget/lists/tile_example.dart
+    -  lib/flutter_widget/lists/listview_example.dart
+    -  lib/flutter_pub/markdown/markdown_example.dart
+    -  lib/flutter_pub/provider/example/provider_example.dart
+    -  lib/flutter_pub/shard_preferences/example/shard_preferences.dart
+    -  lib/http/dio/example/http_example.dart
+    -  lib/http/http_modules/http_page_test_page.dart
+    -  lib/navigator/based_on_using/navigator_based.dart
+    -  lib/navigator/navigator_expert/nav_expert.dart
+    -  lib/share_communication/communication/communication.dart
+    -  lib/share_communication/shared_data_widget/shared_data_widget.dart
+    -  lib/flutter_pub/stacked_pub/stacked_nonReactive.dart
+    -  lib/layouts_or_widget/container/container.dart
+    -  lib/based_component/button_style/button_style.dart
 
 #    - assets/images/
 #    - res/lottie/

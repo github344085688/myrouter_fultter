@@ -10,6 +10,8 @@ import 'package:my_router_flutter/flutter_pub/stacked_pub/stacked_pub.dart';
 import 'package:my_router_flutter/flutter_pub/stacked_pub/stacked_nonReactive.dart';
 import 'package:my_router_flutter/flutter_pub/stacked_pub/explain.dart' show STACKEDPUBMOUDELS;
 
+import 'package:my_router_flutter/flutter_pub/flutter_staggered_grid_view_pub/flutter_staggered_grid_view_pub.dart';
+
 const flutterPub = <DefaultRoute>[
   DefaultRoute(
       groupName: "Flutter Pub",
@@ -63,9 +65,23 @@ const flutterPub = <DefaultRoute>[
                   icon: Icon(Icons.keyboard_arrow_right),
                   sourceFilePath:
                   'lib/flutter_pub/stacked_pub/stacked_nonReactive.dart',
-                  title: 'ViewModel View constructor ',
-                  description: 'MVVM 父子组件方法调用，级方法传递',
+                  title: 'MVVM ViewModel View stacked',
+                  description: 'MVVM 父子组件方法调用，级方法传递 stacked ',
                   explain:STACKEDPUBMOUDELS)
+            ]),
+        DefaultRoute(
+            groupName: 'flutter Staggered Grid View',
+            icon: Icon(Icons.extension),
+            routes: <AgencyRoute>[
+              AgencyRoute(
+                  child: FlutterStaggeredGridViewPub(),
+                  icon: Icon(Icons.keyboard_arrow_right),
+                  sourceFilePath:
+                  'lib/flutter_pub/flutter_staggered_grid_view_pub/flutter_staggered_grid_view_pub.dart',
+                  title: 'Shared Preferences',
+                  description: '实现不同高度的滚动瀑布流'),
+
+
             ])
       ]),
 

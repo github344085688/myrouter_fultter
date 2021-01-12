@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_router_flutter/common/widget_markdown.dart';
+import './bottom_navigation_view.dart';
 import './my_drawer.dart';
 class ScaffoldTabBarNavigationBar extends StatefulWidget{
   const ScaffoldTabBarNavigationBar({Key key}):super(key:key);
@@ -18,11 +19,22 @@ class _ScaffoldTabBarNavigationBar extends State<ScaffoldTabBarNavigationBar>{
       appBar: AppBar( //导航栏
         title: Text("App Name"),
         actions: <Widget>[ //导航栏右侧菜单
-          IconButton(icon: Icon(Icons.share), onPressed:() => _scaffoldKey.currentState.openDrawer()),
+          IconButton(icon: Icon(Icons.share), onPressed:() => Scaffold.of(context).openDrawer()),
         ],
       ),
       drawer: new MyDrawer(), //抽屉
-      bottomNavigationBar: BottomNavigationBar( // 底部导航
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton:Builder(
+        builder: (context) => FloatingActionButton(
+          backgroundColor:Colors.blue,
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          child: Icon(Icons.add),
+          elevation: 3.0,
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationView(),
+      extendBody: true,
+   /*   bottomNavigationBar: BottomNavigationBar( // 底部导航
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('Business')),
@@ -35,7 +47,7 @@ class _ScaffoldTabBarNavigationBar extends State<ScaffoldTabBarNavigationBar>{
       floatingActionButton: FloatingActionButton( //悬浮按钮
           child: Icon(Icons.add),
           onPressed:_onAdd
-      ),
+      ),*/
     );
   }
   void _onItemTapped(int index) {

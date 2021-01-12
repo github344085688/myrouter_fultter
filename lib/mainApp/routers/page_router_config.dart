@@ -11,6 +11,7 @@ import 'package:my_router_flutter/http/main_routers.dart';
 import 'package:my_router_flutter/navigator/main_routers.dart';
 import 'package:my_router_flutter/share_communication/main_routers.dart';
 import 'package:my_router_flutter/lifecycle/main_routers.dart';
+import 'package:my_router_flutter/mvvm_state_pub/main_routers.dart';
 
 const MyDefaultRoutes = <DefaultRoute>[
   ...dartGrammar,
@@ -22,5 +23,6 @@ const MyDefaultRoutes = <DefaultRoute>[
   ...flutterHttp,
   ...navigator,
   ...shareCommunication,
-  ...lifecycle
+  ...lifecycle,
+  ...MvvmStatePub
 ];
