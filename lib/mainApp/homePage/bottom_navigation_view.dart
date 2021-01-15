@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 class BottomNavigationView extends StatelessWidget {
+  final setActivity;
+  final int currentIndex;
+  const BottomNavigationView({Key key,this.currentIndex,this.setActivity }):super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,24 +41,13 @@ class BottomNavigationView extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,//均分底部导航栏横向空间
               children: <Widget>[
-                _buildBotomItem( 0, Icons.home, "首页"),
-                _buildBotomItem( 1, Icons.library_music, "发现"),
-                _buildBotomItem( -1, null, "发现"),
-                _buildBotomItem( 2, Icons.email, "消息"),
-                _buildBotomItem( 3, Icons.person, "我的"),
-                /* Builder(
-                builder: (context)=>IconButton(icon: Icon(Icons.home),
-                  onPressed: () => Scaffold.of(context).openDrawer(),
-                ),
-              ),
-              SizedBox(), //中间位置空出
-              IconButton(icon: Icon(Icons.business),
-               onPressed: () => Scaffold.of(context).openDrawer(),
-              ),*/
+                _buildBotomItem(currentIndex,setActivity, 0, Icons.home, "首页"),
+                _buildBotomItem(currentIndex,setActivity, 1, Icons.library_music, "发现"),
+                _buildBotomItem(currentIndex,setActivity, -1, null, ""),
+                _buildBotomItem(currentIndex,setActivity, 2, Icons.email, "消息"),
+                _buildBotomItem(currentIndex,setActivity, 3, Icons.person, "我的"),
               ],
             ),
-
-
           ),
         ),
       ),
@@ -64,7 +56,7 @@ class BottomNavigationView extends StatelessWidget {
 
 }
 
-_buildBotomItem( int index, IconData iconData, String title) {
+_buildBotomItem(int currentIndex,dynamic setActivity, int index, IconData iconData, String title) {
   //未选中状态的样式
   TextStyle textStyle = TextStyle(fontSize: 12.0,color: Colors.grey[50]);
   Color iconColor = Colors.white;
@@ -107,11 +99,9 @@ _buildBotomItem( int index, IconData iconData, String title) {
     flex: 1,
     child: new GestureDetector(
       onTap: () {
-        /*  if (index != currentIndex) {
-          setState(() {
-            currentIndex = index;
-          });
-        }*/
+          if (index != currentIndex) {
+            setActivity(index);// 调用父级组件方法
+        }
       },
       child: SizedBox(
         height: 52,
