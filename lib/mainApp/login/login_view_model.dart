@@ -29,9 +29,9 @@ class LoginViewModel extends ChangeNotifier {
 
     try {
       LoginResult loginResult = await userRepositoryServices.login(userName, password);
-
+      print(loginResult.userPermissions);
       if (loginResult != null ) {
-        print('~~~~~~~~~~~~~~~~~~~~~~esult ${loginResult}');
+
       } else {
         String failMsg = "";
         /* switch (loginResult.code) {

@@ -22,7 +22,7 @@ class UserRepositoryServices {
 class UserRepositoryServices {
   static const String LOGIN = 'shared/idm-app/user/login';
 
-  Future<LoginResult> login(String userName, String password) async {
+  Future login(String userName, String password) async {
     return LoginResult.fromJson(await http.post(LOGIN, {
       "page": "Web",
       "password": password,
