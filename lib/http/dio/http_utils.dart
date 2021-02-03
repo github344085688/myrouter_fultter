@@ -1,4 +1,4 @@
-import 'dio_client.dart';
+import './dio_client.dart';
 import 'package:dio/dio.dart';
 
 class HttpUtils {
