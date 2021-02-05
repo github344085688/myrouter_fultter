@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_router_flutter/http_request/services/user_repository_services.dart';
+import 'package:my_router_flutter/mainApp/local_storage/local_storage.dart';
+import 'package:my_router_flutter/http_request/shared/dio_client.dart';
+import 'package:my_router_flutter/mainApp/homePage/home_page.dart';
 import './login_result.dart';
 
 class LoginViewModel extends ChangeNotifier {
@@ -16,22 +19,39 @@ class LoginViewModel extends ChangeNotifier {
   LoginViewModel(BuildContext context) {
     _context = context;
   }
+
   initSteps() {
-    userName="tracyh";
-    password="qwer1234";
+    userName = "tracyh";
+    password = "qwer1234";
     notifyListeners();
   }
-  login() async {
+
+  retrieve() async {
+    try {
+      var loginResults = await userRepositoryServices.retrieve({
+        "keyword": "",
+        "isAndroidOnline": null,
+        "paging": {"pageNo": 1, "limit": 10}
+      });
+      print('~~~~~~~~~~~~~~~~~~~~~~~${loginResults}');
+    } catch (e) {}
+    /*on HttpRequestException catch (e){
+      Fluttertoast.showToast(msg: e.toString());
+    }*/
+  }
+
+  login(BuildContext context) async {
     String errMsg = _validate();
     if (errMsg.isNotEmpty) {
       return;
     }
 
     try {
-      LoginResult loginResult = await userRepositoryServices.login(userName, password);
-      print(loginResult.userPermissions);
-      if (loginResult != null ) {
-
+      LoginResult loginResult =
+          await userRepositoryServices.login(userName, password);
+      // print('~~~~~~~~~~~~~~~~~~~~~~~${loginResult.userView}');
+      if (loginResult != null && loginResult.success) {
+        _loadUser(loginResult,context);
       } else {
         String failMsg = "";
         /* switch (loginResult.code) {
@@ -53,6 +73,45 @@ class LoginViewModel extends ChangeNotifier {
       }
     } catch (e) {}
     /*on HttpRequestException catch (e){
+      Fluttertoast.showToast(msg: e.toString());
+    }*/
+  }
+
+  void _loadUser(LoginResult loginResult, BuildContext context) async {
+    await LocalStorage.setToken(loginResult.oAuthToken);
+    await LocalStorage.setCompanyId(loginResult.oAuthToken);
+    DioClient dioClient = new DioClient();
+    dioClient
+      ..updateToken(loginResult.oAuthToken)
+      ..updateCompanyId(loginResult.userView.defaultCompanyFacility.companyId);
+    try {
+      /*Navigator.of(context)
+        ..popUntil((Route<dynamic> route) => route == _route)
+        ..pop(result);*/
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => MyHomePage()),
+              (route) => true);
+    } catch (e) {}
+
+    // http.updateToken(loginResult.oAuthToken);
+
+    /* String companyId = _getCompanyId(loginResult.userView);
+    if (companyId == null || companyId.isEmpty || loginResult.userView.assignedCompanyFacilities == null || loginResult.userView.assignedCompanyFacilities.isEmpty) {
+      Fluttertoast.showToast(msg: S.of(_context).error_assign_company_and_facility);
+      return;
+    }
+
+    await LocalStorage.setCompanyId(companyId);
+    http.updateCompanyId(companyId);
+
+    try {
+      UserView userView = await userRepository.loadUser(loginResult.idmUserId);
+      //save user data to local db
+      await _saveUser(userView);
+      await _saveAssignCompanyAndFacilities(userView);
+
+      locator<NavigationService>().pushNamedAndRemoveUntil(HomePageRoute, (route) => false);
+    } on HttpRequestException catch (e) {
       Fluttertoast.showToast(msg: e.toString());
     }*/
   }

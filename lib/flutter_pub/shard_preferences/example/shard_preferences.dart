@@ -15,8 +15,7 @@ import 'package:my_router_flutter/flutter_pub/shard_preferences/data_base/shared
   }
 
   void setToken() async{
-//    token= await  SharedPreference.set('token','25556');
-    print(token);
+    await  SharedPreference.set('token','25556ss');
   }
 
  void getToken() async{

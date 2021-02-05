@@ -215,7 +215,34 @@ class _LoginFrom extends ViewModelWidget<LoginViewModel> {
                           child: Text("登录"),
                           // color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
-                          onPressed:()=> _viewModel.login()
+                          onPressed:()=> _viewModel.login(context)
+                        /* onPressed: () {
+                          if ((_formKey.currentState as FormState)
+                              .validate()) {
+
+                            Scaffold.of(context)
+                                .showSnackBar(SnackBar(
+                              content: Text('提交成功...'),
+                            ));//验证通过提交数据
+                          }
+                        },*/
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: RaisedButton(
+                          padding: EdgeInsets.all(15.0),
+                          color: Colors.red[400],
+                          child: Text("找回密码"),
+                          // color: Theme.of(context).primaryColor,
+                          textColor: Colors.white,
+                          onPressed:()=> _viewModel.retrieve()
                         /* onPressed: () {
                           if ((_formKey.currentState as FormState)
                               .validate()) {

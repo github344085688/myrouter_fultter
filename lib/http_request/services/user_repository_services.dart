@@ -1,33 +1,21 @@
 import '../shared/http_utils.dart';
 import '../../mainApp/login/login_result.dart';
-/*
-
-class UserRepositoryServices {
-  static const String LOGIN = 'idm-app/user/login';
-
-  Future<LoginResult> login(String userName, String password,
-      String accountCode) async {
-    return LoginResult.fromJson(await http.post(LOGIN, {
-      "channel": "Android",
-      "isForceLogin": false,
-      "password": password,
-      "returnUserPermissions": ["ANDROID"],
-      "username": userName,
-      "accountCode": accountCode
-    }));
-  }
-}
-*/
 
 class UserRepositoryServices {
   static const String LOGIN = 'shared/idm-app/user/login';
+  // static const String RETRIEVE = 'shared/idm-app/permission/search';
+  static const String RETRIEVE = 'shared/idm-app/user/search-by-paging';
 
-  Future login(String userName, String password) async {
+  Future<LoginResult> login(String userName, String password) async {
     return LoginResult.fromJson(await http.post(LOGIN, {
       "page": "Web",
       "password": password,
       "returnUserPermissions": ["WEB"],
       "username": userName,
     }));
+  }
+
+  Future retrieve(dynamic pass) async {
+    return await http.post(RETRIEVE, pass);
   }
 }
