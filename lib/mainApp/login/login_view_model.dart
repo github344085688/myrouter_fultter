@@ -85,9 +85,7 @@ class LoginViewModel extends ChangeNotifier {
       ..updateToken(loginResult.oAuthToken)
       ..updateCompanyId(loginResult.userView.defaultCompanyFacility.companyId);
     try {
-      /*Navigator.of(context)
-        ..popUntil((Route<dynamic> route) => route == _route)
-        ..pop(result);*/
+
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => MyHomePage()),
               (route) => true);
