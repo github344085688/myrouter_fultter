@@ -5,7 +5,7 @@ import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_auth_
 import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_notifications_ex.dart';
 import 'package:my_router_flutter/mainApp/utilities/local_notifications_view_moudle.dart';
 import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/popup_menu_button_view_moule.dart';
-import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_scan_ex.dart';
+// import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_scan_ex.dart';
 class HomePopupMenuButton extends StatefulWidget {
   const HomePopupMenuButton({Key key}) : super(key: key);
 
@@ -133,7 +133,7 @@ class _HomePopupMenuButton extends State<HomePopupMenuButton> {
           ],
         ),
       ),
-      PopupMenuDivider(
+    /*  PopupMenuDivider(
         height: 3.0,
       ),
       PopupMenuItem<String>(
@@ -151,7 +151,7 @@ class _HomePopupMenuButton extends State<HomePopupMenuButton> {
             ),
           ],
         ),
-      ),
+      ),*/
     ];
   }
 
@@ -180,11 +180,11 @@ class _HomePopupMenuButton extends State<HomePopupMenuButton> {
       case 'notification':
         LocalNotificationsViewMoudle(context).showNotification();
         break;
-      case 'qrscan':
+     /* case 'qrscan':
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => LocalScan()),
                 (route) => true);
-        break;
+        break;*/
       default:
         // executeUnknown();
     }

@@ -41,8 +41,8 @@ dependencies:
   local_auth: ^0.6.3+4 #指纹认证
   transparent_image: ^1.0.0 #图片占位
   flutter_local_notifications:  ^4.0.0
-  qrscan: ^0.2.22 #扫一扫
-  qr_flutter: ^3.2.0 #扫一扫
+#  qrscan: ^0.2.22 #扫一扫
+#  qr_flutter: ^3.2.0 #扫一扫
 #  fluttertoast: any #弹窗，
 
 
