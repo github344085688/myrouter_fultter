@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/image_picker_ex.dart';
 import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_auth_ex.dart';
+import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_auth_ex2.dart';
+import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_notifications_ex.dart';
+import 'package:my_router_flutter/mainApp/utilities/local_notifications_view_moudle.dart';
 import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/popup_menu_button_view_moule.dart';
-
+import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/local_scan_ex.dart';
 class HomePopupMenuButton extends StatefulWidget {
   const HomePopupMenuButton({Key key}) : super(key: key);
 
@@ -105,16 +108,50 @@ class _HomePopupMenuButton extends State<HomePopupMenuButton> {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: Icon(Icons.unsubscribe,color:Colors.black38),
+              child: Icon(Icons.ad_units,color:Colors.black38),
             ),
             Expanded(
               flex: 2,
-              child: Text('帮助反馈'),
+              child: Text('推送'),
             ),
           ],
         ),
       ),
-
+      PopupMenuItem<String>(
+        value: 'notification',
+        child: Flex(
+          direction: Axis.horizontal,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Icon(Icons.ad_units,color:Colors.black38),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text('推送'),
+            ),
+          ],
+        ),
+      ),
+      PopupMenuDivider(
+        height: 3.0,
+      ),
+      PopupMenuItem<String>(
+        value: 'qrscan',
+        child: Flex(
+          direction: Axis.horizontal,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Icon(Icons.qr_code_scanner,color:Colors.black38),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text('扫一扫'),
+            ),
+          ],
+        ),
+      ),
     ];
   }
 
@@ -126,6 +163,9 @@ class _HomePopupMenuButton extends State<HomePopupMenuButton> {
                 (route) => true);
         break;
       case 'addFriend':
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => LocalAuthExamples()),
+                (route) => true);
         break;
       case 'photograph':
         Navigator.of(context).pushAndRemoveUntil(
@@ -133,6 +173,17 @@ class _HomePopupMenuButton extends State<HomePopupMenuButton> {
                 (route) => true);
         break;
       case 'helpAndFeedback':
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => LocalNotifications()),
+                (route) => true);
+        break;
+      case 'notification':
+        LocalNotificationsViewMoudle(context).showNotification();
+        break;
+      case 'qrscan':
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => LocalScan()),
+                (route) => true);
         break;
       default:
         // executeUnknown();

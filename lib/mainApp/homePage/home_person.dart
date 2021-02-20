@@ -39,14 +39,31 @@ class _HomePerson extends State<HomePerson> {
                       height: 80.0,
                       child: ListTile(
                           contentPadding: EdgeInsets.all(00.0),
-                          leading: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 45.0,
-                              child: Image.asset(
-                                'assets/images/47.jpg',
-                                width: 45.0,
-                                height: 45.0,
-                              )),
+                          leading: Listener(
+                            child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 45.0,
+                                child: Image.asset(
+                                  'assets/images/47.jpg',
+                                  width: 45.0,
+                                  height: 45.0,
+                                )),
+                            // onPointerDown: (event) => print("down0"),
+                            onPointerDown: (PointerDownEvent event)=>Navigator.pop(context),
+                            onPointerMove: (PointerMoveEvent event){
+                              print("onPointerMove:${event.position.toString()}");
+                            },
+                            onPointerUp: (PointerUpEvent event){
+                              print("onPointerUp:${event.position.toString()}");
+                            },
+
+                            onPointerCancel: (PointerCancelEvent event){
+                              print("onPointerCancel:${event.position.toString()}");
+                            },
+                            // Navigator.of(context).pop();
+                            //_nextPage(-1);
+                            // Navigator.pop(context); // 关闭当前页面
+                          ),
                           title: Text('images',
                               style: TextStyle(
                                 color: Colors.white,

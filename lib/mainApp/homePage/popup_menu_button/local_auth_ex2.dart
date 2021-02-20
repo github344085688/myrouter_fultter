@@ -4,14 +4,17 @@ import 'package:local_auth/auth_strings.dart';
 import 'package:transparent_image/transparent_image.dart'
     show kTransparentImage;
 
-class LocalAuthExample extends StatefulWidget {
-  const LocalAuthExample({Key key}) : super(key: key);
+class LocalAuthExamples extends StatefulWidget {
+  const LocalAuthExamples({Key key}) : super(key: key);
 
   @override
   _LocalAuthExampleState createState() => _LocalAuthExampleState();
 }
 
-class _LocalAuthExampleState extends State<LocalAuthExample> {
+class _LocalAuthExampleState extends State<LocalAuthExamples> {
+   //下面是汉化
+
+
   @override
   Widget build(BuildContext context) {
     var localAuth = LocalAuthentication();
@@ -24,33 +27,6 @@ class _LocalAuthExampleState extends State<LocalAuthExample> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
-                onPressed: ()async {
-                  try{
-                    bool canCheckBiometrics =
-                    await localAuth.canCheckBiometrics;
-                    print(canCheckBiometrics);
-                  }catch(e){
-                    print(e);
-                  }
-                },
-                child: Text("检测是否支持生物识别"),
-              ),
-              SizedBox(height: 30),
-              RaisedButton(
-                onPressed: () async{
-                  try{
-                    List<BiometricType> availableBiometrics =
-                    await localAuth.getAvailableBiometrics();
-                    print(availableBiometrics);
-                  }catch(e){
-                    print(e);
-                  }
-
-                },
-                child: Text("获取生物识别技术列表"),
-              ),
-              SizedBox(height: 30),
               RaisedButton(
                 onPressed: () async{
                   //下面是汉化
@@ -74,7 +50,7 @@ class _LocalAuthExampleState extends State<LocalAuthExample> {
                         stickyAuth: true,
                         androidAuthStrings: andStrings
                     );
-                    print(didAuthenticate);
+                    // print(didAuthenticate);
                   } catch (e) {
                     print(e);
                   }

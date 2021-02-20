@@ -16,6 +16,9 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("指纹识别认证演示"),
+        ),
       body:ListView(
         children: <Widget>[
           ButtonBar(
@@ -32,7 +35,8 @@ class _ImagePickerExampleState extends State<ImagePickerExample> {
               ),
             ],
           ),
-          this._imageFile == null ? Placeholder() : Image.file(this._imageFile),
+          // this._imageFile == null ? Placeholder() : Image.file(this._imageFile),
+          this._imageFile == null ? Image.asset('assets/images/123.gif') : Image.file(this._imageFile),
         ],
       )
     );

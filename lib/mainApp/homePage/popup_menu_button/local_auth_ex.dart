@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:local_auth/auth_strings.dart';
 import 'package:transparent_image/transparent_image.dart'
     show kTransparentImage;
 
@@ -13,6 +14,17 @@ class LocalAuthExample extends StatefulWidget {
 class _LocalAuthExampleState extends State<LocalAuthExample> {
   bool _authSuccess = false;
   LocalAuthentication _localAuth;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final andStrings = const AndroidAuthMessages(
+    cancelButton: '取消',
+    goToSettingsButton: '去设置',
+    fingerprintNotRecognized: '指纹识别失败',
+    goToSettingsDescription: '请设置指纹.',
+    fingerprintHint: '指纹',
+    fingerprintSuccess: '指纹识别成功',
+    signInTitle: '指纹验证',
+    fingerprintRequiredTitle: '请先录入指纹!',
+  );
 
   @override
   void initState() {
@@ -22,28 +34,30 @@ class _LocalAuthExampleState extends State<LocalAuthExample> {
 
   Future<bool> _auth() async {
     setState(() => this._authSuccess = false);
+
     if (await this._localAuth.canCheckBiometrics == false) {
-      Scaffold.of(context).showSnackBar(
+      _scaffoldKey.currentState.showSnackBar(
         SnackBar(
-          content: Text('Your device is NOT capable of checking biometrics.\n'
-              'This demo will not work on your device!\n'
-              'You must have android 6.0+ and have fingerprint sensor.'),
+          content: Text('您的设备无法检查生物识别。'
+              '这个演示将不能在您的设备上工作!\n'
+              '你必须使用android 6.0以上系统，并配备指纹传感器。'),
         ),
       );
       return false;
     }
-    // **NOTE**: for local auth to work, tha MainActivity needs to extend from
-    // FlutterFragmentActivity, cf. https://stackoverflow.com/a/56605771.
+
     try {
-      final authSuccess = await this
-          ._localAuth
-          .authenticateWithBiometrics(localizedReason: '身份验证以查看隐藏图像');
-      Scaffold.of(context).showSnackBar(
+      final authSuccess = await this._localAuth.authenticateWithBiometrics(
+          localizedReason: '扫描指纹进行身份识别',
+          useErrorDialogs: false,
+          stickyAuth: true,
+          androidAuthStrings: andStrings);
+      _scaffoldKey.currentState.showSnackBar(
         SnackBar(content: Text('authSuccess=$authSuccess')),
       );
       return authSuccess;
     } catch (e) {
-      Scaffold.of(context).showSnackBar(
+      _scaffoldKey.currentState.showSnackBar(
         SnackBar(content: Text(e.toString())),
       );
       return false;
@@ -52,6 +66,7 @@ class _LocalAuthExampleState extends State<LocalAuthExample> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("指纹识别认证演示"),
       ),
@@ -59,18 +74,18 @@ class _LocalAuthExampleState extends State<LocalAuthExample> {
         children: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.fingerprint),
-            label: Text('身份验证以查看隐藏图像'),
+            label: Text('Auth in to view hidden image'),
             onPressed: () async {
               final authSuccess = await this._auth();
               setState(() => this._authSuccess = authSuccess);
             },
           ),
           this._authSuccess
-              ? FadeInImage(
-                  placeholder: MemoryImage(kTransparentImage),
-                  image: AssetImage('assets/images/animated_flutter_lgtm.gif'),
+              ? FadeInImage.assetNetwork(
+                  image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa4.att.hudong.com%2F10%2F39%2F01300000111114121474393119380.jpg&refer=http%3A%2F%2Fa4.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615368452&t=903ec3a4a44dcd62ee64eebb6d6b04ec',
+                  placeholder: 'assets/images/124.gif' /* 指定gif */,
                 )
-              : Placeholder(),
+              : Image.asset('assets/images/123.gif')
         ],
       ));
 }
