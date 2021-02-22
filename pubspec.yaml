@@ -36,12 +36,12 @@ dependencies:
   backdrop: ^0.4.4  #背景模糊
   stacked: ^1.7.6 #MVVM
   flutter_svg: ^0.19.1 #svg
-  flutter_staggered_grid_view: ^0.3.3
-  image_picker: ^0.6.7+22
+  flutter_staggered_grid_view: ^0.3.3 #分页瀑布流效果
+  image_picker: ^0.6.7+22 #图片选择器
   local_auth: ^0.6.3+4 #指纹认证
   transparent_image: ^1.0.0 #图片占位
-  flutter_local_notifications:  ^4.0.0
-#  qrscan: ^0.2.22 #扫一扫
+  flutter_local_notifications:  ^4.0.0 #弹通知栏插件
+  qrscan: ^0.2.22 #扫一扫
 #  qr_flutter: ^3.2.0 #扫一扫
 #  fluttertoast: any #弹窗，
 
@@ -53,6 +53,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

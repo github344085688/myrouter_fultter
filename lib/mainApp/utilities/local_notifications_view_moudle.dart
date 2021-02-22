@@ -5,7 +5,7 @@ class LocalNotificationsViewMoudle extends ChangeNotifier {
   BuildContext _context;
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
-  dynamic android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+  dynamic android = new AndroidInitializationSettings('@mipmap/ic_launcher_logo');
   dynamic iOS = new IOSInitializationSettings();
 
   LocalNotificationsViewMoudle(BuildContext context) {
