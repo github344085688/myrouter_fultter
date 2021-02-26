@@ -50,10 +50,6 @@ class _HomePageDrawer extends State<HomePageDrawer> {
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  // child: Container(
-                  //   color: Colors.red,
-                  //   height: double.infinity,
-                  // ),
                 ),
               ),
               Positioned(
