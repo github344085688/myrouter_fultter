@@ -4,7 +4,7 @@ import './bottom_navigation_view.dart';
 import './home_search_page.dart';
 import './home_body.dart';
 import './home_person.dart';
-
+import 'package:my_router_flutter/mainApp/homePage/popup_menu_button/popup_menu_button_view.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);
 
@@ -76,14 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
             tooltip: 'Search',
             icon: const Icon(Icons.search),
             onPressed: () async {
-              print('onPressed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
               final String selected = await showSearch<String>(
                 context: context,
                 delegate: _delegate,
               );
-
-              print('onPressed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$selected');
-              print('onPressed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
               if (selected != null) {
                 Scaffold.of(context).showSnackBar(
                   SnackBar(
@@ -93,24 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             },
           ),
-          new PopupMenuButton<String>(
-            itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-              this.SelectView(Icons.message, '发起群聊', 'A'),
-              this.SelectView(Icons.group_add, '添加服务', 'B'),
-              this.SelectView(Icons.cast_connected, '扫一扫码', 'C'),
-            ],
-            onSelected: (String action) {
-              // 点击选项的时候
-              switch (action) {
-                case 'A':
-                  break;
-                case 'B':
-                  break;
-                case 'C':
-                  break;
-              }
-            },
-          ),
+          HomePopupMenuButton()
         ],
       ),
       drawer: HomePageDrawer(),
